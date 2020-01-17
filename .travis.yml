@@ -1,0 +1,17 @@
+language: generic
+
+sudo: required
+services:
+  - docker
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-west-1
+  app: docker-express-app
+  env: DockerExpressApp-env
+  bucket_name: elasticbeanstalk-eu-west-1-776008521384
+  bucket_path: docker-express-app
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY

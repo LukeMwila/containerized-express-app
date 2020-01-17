@@ -1,0 +1,17 @@
+version: "3"
+services:
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - '3000:80'
+  api:
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    restart: on-failure
+    container_name: api
+    volumes:
+      - /app/node_modules # Inside the container, don't try to override this folder, just leave as is
